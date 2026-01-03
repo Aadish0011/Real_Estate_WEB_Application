@@ -5,6 +5,8 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { fadeInUp, fadeInUpDelay, staggerContainer, hoverLift } from '../utils/animations'
 import './Home.css'
+import { API_BASE_URL } from '../utils/api'
+
 
 const Home = () => {
   const [properties, setProperties] = useState([])
@@ -477,7 +479,7 @@ const SectionWrapper = ({ id, className, children }) => {
 
 const PropertyCard = ({ property, index }) => {
   const imageUrl = property.images && property.images.length > 0
-    ? `${import.meta.env.VITE_API_Base_URL || 'http://localhost:8000'}${property.images[0]}`
+    ? `${API_BASE_URL}${property.images[0]}`
     : 'https://via.placeholder.com/400x300?text=No+Image'
 
   return (
