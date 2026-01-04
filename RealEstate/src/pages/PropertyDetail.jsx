@@ -1,8 +1,11 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { propertiesAPI } from '../utils/api'
 import { formatPrice, formatPhone } from '../utils/formatters'
 import './PropertyDetail.css'
+import { propertiesAPI, API_BASE_URL } from '../utils/api'
+
+
+
 
 const PropertyDetail = () => {
   const { id } = useParams()
@@ -105,7 +108,7 @@ const PropertyDetail = () => {
             <div className="main-image">
               <img 
                 src={property.images && property.images.length > 0
-                  ? `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${property.images[currentImageIndex]}`
+                  ? `${API_BASE_URL}${property.images[currentImageIndex]}`
                   : 'https://via.placeholder.com/800x600?text=No+Image'} 
                 alt={property.title}
                 onError={(e) => {
@@ -118,7 +121,7 @@ const PropertyDetail = () => {
                 {property.images.map((image, index) => (
                   <img
                     key={index}
-                    src={`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${image}`}
+                    src={`${API_BASE_URL}${image}`}
                     alt={`${property.title} ${index + 1}`}
                     className={index === currentImageIndex ? 'active' : ''}
                     onClick={() => setCurrentImageIndex(index)}
