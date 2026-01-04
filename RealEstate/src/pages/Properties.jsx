@@ -3,6 +3,8 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { propertiesAPI } from '../utils/api'
 import { formatPrice } from '../utils/formatters'
 import './Properties.css'
+import { API_BASE_URL } from '../utils/api'
+
 
 const Properties = () => {
   const [searchParams] = useSearchParams()
@@ -224,7 +226,7 @@ const Properties = () => {
                       <div className="property-image">
                         <img 
                           src={property.images && property.images.length > 0 
-                            ? `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${property.images[0]}` 
+                            ? `${API_BASE_URL}${property.images[0]}` 
                             : 'https://via.placeholder.com/400x300?text=No+Image'} 
                           alt={property.title}
                           onError={(e) => {
